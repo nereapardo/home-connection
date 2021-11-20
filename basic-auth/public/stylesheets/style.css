@@ -1,12 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.hero {
+  height: 400px;
+  position: relative;
 }
-
-a {
-  color: #00b7ff;
+.hero-img {
+  background-image: url("../images/city-hero-img.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 100%;
+  width: 100%;
 }
-
-h1 {
-  color: 15px;
+.hero-effect {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(71, 8, 98);
+  background: linear-gradient(
+    0deg,
+    rgba(71, 8, 98, 1) 0%,
+    rgba(71, 8, 98, 0.1407913507199755) 70%,
+    rgba(71, 8, 98, 0) 100%
+  );
 }
