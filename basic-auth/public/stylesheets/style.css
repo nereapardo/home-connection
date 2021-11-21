@@ -1,5 +1,21 @@
+.logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+}
+.navbar a {
+  color: rgb(49, 48, 51);
+}
+.navbar a:hover {
+  color: rgba(67, 45, 118, 0.733);
+  font-weight: bold;
+}
+#logo-text {
+  color: rgba(67, 45, 118, 0.733);
+  font-weight: bold;
+}
 .hero {
-  height: 400px;
+  height: 600px;
   position: relative;
 }
 .hero-img {
@@ -8,6 +24,17 @@
   background-position: bottom;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-heading {
+  color: white;
+  text-align: center;
+  font-size: 100px;
+  font-weight: bold;
+  z-index: 10;
 }
 .hero-effect {
   position: absolute;
@@ -22,4 +49,48 @@
     rgba(71, 8, 98, 0.1407913507199755) 70%,
     rgba(71, 8, 98, 0) 100%
   );
+}
+.search-container {
+  width: 40%;
+  height: 150px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-search {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+.hero-search-bar {
+  width: 80%;
+  border: none;
+  border-radius: 10px;
+  padding-left: 8px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+.hero-search-bar i {
+  margin-right: 4px;
+}
+.hero-search-bar-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.search-btn {
+  background-color: rgb(255, 196, 0);
+  color: rgba(71, 8, 98, 1);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+}
+
+.features-container {
+  height: 400px;
+  width: 100vw;
+  background-color: rgba(71, 8, 98, 1);
 }
