@@ -4,5 +4,8 @@ const router = require("express").Router();
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+router.get("/newHouse", (req, res, next) => {
+  res.render("newHouse");
+});
 
 module.exports = router;
