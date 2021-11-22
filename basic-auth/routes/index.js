@@ -5,5 +5,5 @@ const House = require("../models/House.model");
 router.get("/", (req, res, next) => {
   res.render("index");
 });
-
+//TODO: add a filter by city
 module.exports = router;

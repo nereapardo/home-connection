@@ -55,5 +55,8 @@ router.post("/new-house", isLoggedIn, async (req, res, next) => {
     res.render("newHouse", { msg: "You must enter all the info" });
   }
 });
+// TODO: add different filters
+// Add a user page where there are a list of active and unactive houses and user can access to ech house and update and delete them
+// TODO bonus: increase password security (longer password with special characters)
 
 module.exports = router;
