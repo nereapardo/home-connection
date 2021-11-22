@@ -2,16 +2,19 @@ const { Schema, model } = require("mongoose");
 
 const houseSchema = new Schema(
   {
-    Title: { type: String, required: true },
-    Location: { type: String, required: true },
-    Area: { type: String, required: true },
-    Rooms: { type: String, required: true },
-    Photos: [{ type: String }],
-    Description: { type: String },
-    Price: { type: String },
-    Active: { type: Boolean, required: true },
+    title: { type: String, required: true },
+    location: { type: String, required: true },
+    area: { type: String, required: true },
+    rooms: { type: String, required: true },
+    photo: { type: String },
+    description: { type: String },
+    price: { type: String },
+    active: { type: Boolean, required: true },
   },
   {
     timestamps: true,
   }
 );
+const House = model("House", houseSchema);
+
+module.exports = House;

@@ -1,0 +1,12 @@
+<form method="POST", action="/signup">
+<label>Username:</label>
+<input type="text" name="username" required>
+<label>Password:</label>
+<input type="password" name="password" required>
+<label>Contact information:</label>
+<textarea name="contact" required>Contact info</textarea>
+<button>Create account</button>
+</form>
+{{#if msg}}
+    <h3>{{msg}}</h3>
+{{/if}}

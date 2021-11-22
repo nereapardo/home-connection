@@ -1,4 +1,4 @@
-<form method="POST", action="/newHouse">
+<form method="POST", action="/new-house" enctype="multipart/form-data">
 <label>Title:</label>
 <input type="text" name="title">
 <label>Location:</label>
@@ -7,11 +7,16 @@
 <input type="text" name="area">
 <label>Number of rooms:</label>
 <input type="text" name="rooms">
-{{!-- TODO: ADD INPUT TO ADD THE PICTURES --}}
+<label>Photo:</label>
+<input type="file" name="photo" >
 <label>Description:</label>
 <textarea name="description">eg. Spacious T3 flat in central London...</textarea>
 <label>Price/month:</label>
 <input type="text" name="price">
 <label>Active add:</label>
 <input type = "checkbox" name ="active">
+<button type="submit">Create house</button>
 </form>
+{{#if msg}}
+    <h3>{{msg}}</h3>
+{{/if}}
