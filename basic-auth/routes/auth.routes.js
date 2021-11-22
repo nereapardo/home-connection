@@ -11,6 +11,22 @@ router.get("/signup", (req, res, next) => {
 router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("login");
 });
+router.get("/:id", isLoggedIn, async (req, res, next) => {
+  const userId = await req.session.loggedUser._id;
+  const urlId = req.params.id;
+  console.log("user id", userId);
+  console.log("url id ", urlId);
+  if (userId !== urlId) {
+    res.redirect("/");
+    return;
+  }
+  try {
+    const user = await User.findById(req.params.id);
+    res.render("profile", user);
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.post("/signup", isLoggedOut, async (req, res, next) => {
   const { username, password, contact } = req.body;
   if (!username || !password) {
@@ -31,7 +47,7 @@ router.post("/signup", isLoggedOut, async (req, res, next) => {
       password: hashedPassword,
       contact,
     });
-    res.redirect("/for-rent");
+    res.redirect("/login");
   } catch (error) {
     res.render("signup", { msg: "You must enter all the info" });
   }
@@ -50,7 +66,7 @@ router.post("/login", async (req, res, next) => {
       res.render("login", { errorMsg: "Incorrect password" });
     } else {
       req.session.loggedUser = userFromDB;
-      res.redirect("/");
+      res.redirect(`/${userFromDB.id}`);
     }
   }
 });

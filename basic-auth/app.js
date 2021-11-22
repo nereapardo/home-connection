@@ -11,6 +11,8 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+const path = require("path");
+const multer = require("multer");
 
 const app = express();
 require("./config/session.config")(app);
@@ -25,9 +27,16 @@ const capitalized = (string) =>
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, "/userImages"),
+  filename: (req, file, cb) => {
+    cb(null, new Date().getTime() + path.extname(file.originalname));
+  },
+});
+app.use(multer({ storage }).single("photo"));
+
 // 👇 Start handling routes here
-const index = require("./routes/index");
-app.use("/", index);
+app.use("/", require("./routes/index"));
 app.use("/", require("./routes/house.routes"));
 app.use("/", require("./routes/auth.routes"));
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

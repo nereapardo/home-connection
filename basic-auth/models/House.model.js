@@ -7,9 +7,11 @@ const houseSchema = new Schema(
     area: { type: String, required: true },
     rooms: { type: String, required: true },
     photo: { type: String },
+    public_id: { type: String },
     description: { type: String },
     price: { type: String },
     active: { type: Boolean, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,
