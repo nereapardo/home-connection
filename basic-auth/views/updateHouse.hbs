@@ -1,0 +1,22 @@
+<form method="POST", action="/house/{{houseInfo.id}}/manage" enctype="multipart/form-data">
+<label>Title:</label>
+<input type="text" name="title" value="{{houseInfo.title}}">
+<label>Location:</label>
+<input type="text" name="location" value="{{houseInfo.location}}">
+<label>m2:</label>
+<input type="text" name="area" value="{{houseInfo.area}}">
+<label>Number of rooms:</label>
+<input type="text" name="rooms" value="{{houseInfo.rooms}}"">
+<label>Photo:</label>
+<input type="file" name="photo">
+<label>Description:</label>
+<textarea name="description" value="{{houseInfo.description}}">eg. Spacious T3 flat in central London...</textarea>
+<label>Price/month:</label>
+<input type="text" name="price" value="´{{houseInfo.price}}">
+<label>Active add:</label>
+<input type = "checkbox" name ="active" >
+<button type="submit">Update</button>
+</form>
+{{#if msg}}
+    <h3>{{msg}}</h3>
+{{/if}}
