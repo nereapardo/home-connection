@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-router.get("/new-house", (req, res, next) => {
+router.get("/new-house", isLoggedIn, (req, res, next) => {
   const { username } = req.session.loggedUser;
   res.render("newHouse");
 });
@@ -35,7 +35,13 @@ router.get("/house/:id", async (req, res, next) => {
 router.post("/new-house", isLoggedIn, async (req, res, next) => {
   const { title, location, area, rooms, description, price } = req.body;
   let active = req.body.active === "on" ? true : false;
-  const photo = await cloudinary.v2.uploader.upload(req.file.path);
+  let photo = "/images/no-img-available.jpg";
+  let public_id = "";
+  if (req.file !== undefined) {
+    const photoUploaded = await cloudinary.v2.uploader.upload(req.file.path);
+    photo = photoUploaded.url;
+    public_id = photo.public_id;
+  }
   const userId = await req.session.loggedUser._id;
   try {
     const createdHouse = await House.create({
@@ -43,14 +49,14 @@ router.post("/new-house", isLoggedIn, async (req, res, next) => {
       location,
       area,
       rooms,
-      photo: photo.url,
-      public_id: photo.public_id,
+      photo,
+      public_id,
       description,
       price,
       active,
       userId,
     });
-    res.redirect("/for-rent");
+    res.redirect(`/${userId}`);
   } catch (error) {
     res.render("newHouse", { msg: "You must enter all the info" });
   }

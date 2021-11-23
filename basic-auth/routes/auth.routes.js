@@ -8,10 +8,10 @@ const { isLoggedIn } = require("../middleware/route-guard");
 router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
-router.get("/login", isLoggedOut, (req, res, next) => {
+router.get("/login", (req, res, next) => {
   res.render("login");
 });
-router.get("/:id", isLoggedIn, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   const userId = await req.session.loggedUser._id;
   const urlId = req.params.id;
   console.log("user id", userId);
@@ -20,9 +20,12 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     res.redirect("/");
     return;
   }
+
   try {
+    const query = { userId: userId };
+    const userHouses = await House.find(query);
     const user = await User.findById(req.params.id);
-    res.render("profile", user);
+    res.render("profile", { user, userHouses });
   } catch (error) {
     console.log(error);
   }
@@ -55,11 +58,13 @@ router.post("/signup", isLoggedOut, async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    res.render("login", { errorMsg: "You need to fill all inputs" });
+    res.render("login", { msg: "You need to fill all inputs" });
+    return;
   }
   const userFromDB = await User.findOne({ username });
   if (!userFromDB) {
-    res.render("login", { errorMsg: "The user does not exist" });
+    res.render("login", { msg: "The user does not exist" });
+    return;
   } else {
     const passwordMatch = await bcrypt.compare(password, userFromDB.password);
     if (!passwordMatch) {
