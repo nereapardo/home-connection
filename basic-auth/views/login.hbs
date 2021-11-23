@@ -4,17 +4,19 @@
         <form method="POST", action="/login" class="auth-form">
         <div class="auth-form-input">
             <label>Username:</label>
-            <input type="text" name="username" >
+            <input type="text" name="username" required>
         </div>
         <div class="auth-form-input">
             <label>Password:</label>
-            <input type="password" name="password" >
+            <input type="password" name="password" required>
         </div>
-            <button class="auth-btn">Login</button>
-        </form>
-        {{#if msg}}
-            <h3>{{msg}}</h3>
+        <div class="errorMsg">
+            {{#if msg}}
+            <p>{{msg}}</p>
         {{/if}}
+        </div>
+            <button type="submit" class="auth-btn">Enter</button>
+        </form>
 
     </div>
 </main>
