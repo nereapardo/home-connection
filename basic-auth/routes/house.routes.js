@@ -32,6 +32,20 @@ router.get("/house/:id", async (req, res, next) => {
     console.log(error);
   }
 });
+router.get("/house/:id/manage", isLoggedIn, async (req, res, next) => {
+  const loggedUserId = await req.session.loggedUser._id;
+  const houseInfo = await House.findById(req.params.id);
+  const houseManager = houseInfo.userId;
+  if (loggedUserId !== houseManager) {
+    res.redirect("/");
+    return;
+  }
+  try {
+    res.render("houseInfo", houseInfo);
+  } catch (error) {
+    console.log(error);
+  }
+});
 router.post("/new-house", isLoggedIn, async (req, res, next) => {
   const { title, location, area, rooms, description, price } = req.body;
   let active = req.body.active === "on" ? true : false;
