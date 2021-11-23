@@ -63,12 +63,12 @@ router.post("/login", async (req, res, next) => {
   }
   const userFromDB = await User.findOne({ username });
   if (!userFromDB) {
-    res.render("login", { msg: "The user does not exist" });
+    res.render("login", { msg: "Invalid credentials" });
     return;
   } else {
     const passwordMatch = await bcrypt.compare(password, userFromDB.password);
     if (!passwordMatch) {
-      res.render("login", { errorMsg: "Incorrect password" });
+      res.render("login", { msg: "Invalid credentials" });
     } else {
       req.session.loggedUser = userFromDB;
       res.redirect(`/${userFromDB.id}`);

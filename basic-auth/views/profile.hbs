@@ -3,7 +3,7 @@
 <h3>{{user.contact}}</h3>
 {{#each userHouses}}
     {{this.title}}
-    <a href="/house/{{this._id}}/update">Delete</a>
+    <a href="/house/{{this._id}}/update">Edit</a>
     <form method="POST" action="/house/{{this._id}}/delete">
         <button type="submit">Delete</button>
     </form>

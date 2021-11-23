@@ -1,4 +1,5 @@
-<form method="POST", action="/house/{{houseInfo.id}}/manage" enctype="multipart/form-data">
+<main class="auth">
+    <form method="POST", action="/house/{{houseInfo.id}}/update" enctype="multipart/form-data">
 <label>Title:</label>
 <input type="text" name="title" value="{{houseInfo.title}}">
 <label>Location:</label>
@@ -6,7 +7,7 @@
 <label>m2:</label>
 <input type="text" name="area" value="{{houseInfo.area}}">
 <label>Number of rooms:</label>
-<input type="text" name="rooms" value="{{houseInfo.rooms}}"">
+<input type="text" name="rooms" value="{{houseInfo.rooms}}">
 <label>Photo:</label>
 <input type="file" name="photo">
 <label>Description:</label>
@@ -20,3 +21,5 @@
 {{#if msg}}
     <h3>{{msg}}</h3>
 {{/if}}
+
+</main>

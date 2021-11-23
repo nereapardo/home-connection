@@ -57,7 +57,17 @@ router.post("/new-house", isLoggedIn, async (req, res, next) => {
     public_id = photoUploaded.public_id;
   }
   const userId = await req.session.loggedUser._id;
+  let msg = "Fields m2, rooms and price must be numbers";
+  // const regex = /^[a-zA-Z]+$/;
+  // if (
+  //   !{ area }.match(regex) ||
+  //   !{ rooms }.match(regex) ||
+  //   !{ price }.match(regex)
+  // ) {
+  //   res.render("newHouse", { msg });
+  // }
   try {
+    msg = "You must enter all the info";
     const createdHouse = await House.create({
       title,
       location,
@@ -73,7 +83,7 @@ router.post("/new-house", isLoggedIn, async (req, res, next) => {
     res.redirect(`/${userId}`);
   } catch (error) {
     console.log(error.message);
-    res.render("newHouse", { msg: "You must enter all the info" });
+    res.render("newHouse", { msg });
   }
 });
 router.post("/house/:id/update", isLoggedIn, async (req, res, next) => {
@@ -81,10 +91,11 @@ router.post("/house/:id/update", isLoggedIn, async (req, res, next) => {
   const houseInfo = await House.findById(req.params.id);
   const houseManager = houseInfo.userId.toString();
   if (loggedUserId !== houseManager) {
-    res.redirect("/");
+    res.redirect6("/");
     return;
   }
   const housePhoto = houseInfo.public_id;
+  console.log(houseInfo);
   if (housePhoto !== "") {
     const result = await cloudinary.v2.uploader.destroy(housePhoto);
   }
@@ -129,11 +140,16 @@ router.post("/house/:id/delete", isLoggedIn, async (req, res, next) => {
     res.redirect("/");
     return;
   }
+  const housePhoto = houseInfo.public_id;
+  console.log(houseInfo.public_id);
+  if (housePhoto !== "") {
+    const result = await cloudinary.v2.uploader.destroy(housePhoto);
+  }
   try {
-    const deletedMovie = await House.findByIdAndRemove(req.params.id);
+    const deletedHouse = await House.findByIdAndRemove(req.params.id);
     res.redirect(`/${loggedUserId}`);
   } catch (error) {
-    res.render(`movies/${req.params.id}`);
+    res.redirect(`/${loggedUserId}`);
   }
 });
 // TODO: add different filters
