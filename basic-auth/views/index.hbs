@@ -5,15 +5,15 @@
             <div class="search-container">
                 <form action="/for-rent/search" method="GET" class="hero-search">
                 <div class="hero-search-bar">
-                <i class="fas fa-search-location"></i>
-                <select name="location">
+                    <label for="hero-search-input"><i class="fas fa-search-location"></i></label>
+                <select name="location" id="hero-search-input">
                     {{#each locationList}}
-                    <option value="{{this}}">{{this}}</option>
+                    <option value="{{this}}">{{this}}</option>option>
                     {{/each}}
                 </select>
+            </div>
                 <button type="submit" class="search-btn">Search</button>
                 </form>
-            </div>
         </div>
         <div class="hero-effect"></div>
      </div>

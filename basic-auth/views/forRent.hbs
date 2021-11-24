@@ -1,4 +1,34 @@
-<h1>list of houses for rent</h1>
+<main class="for-rent">
+    <div class="for-rent-header">
+    <h1>Available houses for rent</h1>
+    <form method="GET" action="/for-rent/search">
+    <select name="location">
+        {{#each locationList}}
+                {{#if_eq this ""}}
+                    {{#if_eq this ../currentSearchValue}}
+    ...             <option value="{{this}}" selected >Any location</option>
+                    {{else}}
+                    <option value="{{this}}">Any location</option>
+                    {{/if_eq}}
+                {{else}}
+                    {{#if_eq this ../currentSearchValue}}
+                    <option value="{{this}}" selected >{{this}}</option>
+                    {{else}}
+                    <option value="{{this}}" >{{this}}</option>
+                    {{/if_eq}}
+    ...             
+                {{/if_eq}}
+            
+        {{/each}}
+    </select>
+    <button type="submit" class="search-btn">Search</button>
+</form>
+</div>
+
+
+
+
+
 {{#each housesList}}
 {{#if this.active}}
     <h3>{{this.title}}</h3>
@@ -10,3 +40,5 @@
     <a href="/house/{{this._id}}">view house</a>
 {{/if}}
 {{/each}}
+
+</main>

@@ -27,7 +27,13 @@ router.get("/new-house", isLoggedIn, (req, res, next) => {
 router.get("/for-rent", async (req, res, next) => {
   try {
     const housesList = await House.find();
-    res.render("forRent", { housesList });
+    let locationList = [""];
+    housesList.forEach((house) => {
+      if (locationList.includes(house.location)) return;
+      locationList.push(house.location);
+      return locationList;
+    });
+    res.render("forRent", { housesList, locationList });
   } catch (error) {
     console.log(error);
   }
@@ -38,7 +44,16 @@ router.get("/for-rent/search", async (req, res, next) => {
     return;
   }
   const housesList = await House.find(req.query);
-  res.render("forRent", { housesList });
+  const currentSearchValue = req.query.location.toString();
+  console.log("this is", currentSearchValue);
+  const allHousesList = await House.find();
+  let locationList = [""];
+  allHousesList.forEach((house) => {
+    if (locationList.includes(house.location)) return;
+    locationList.push(house.location);
+    return locationList;
+  });
+  res.render("forRent", { housesList, locationList, currentSearchValue });
 });
 router.get("/house/:id", async (req, res, next) => {
   try {

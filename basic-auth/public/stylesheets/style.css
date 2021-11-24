@@ -7,13 +7,14 @@ body {
   margin-right: 16px;
 }
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
   background-color: white;
   margin: 0;
+  height: 64px;
 }
 .navbar a {
   color: rgb(49, 48, 51);
@@ -88,10 +89,11 @@ body {
 .hero-search-bar i {
   margin-right: 4px;
 }
-.hero-search-bar-input {
+#hero-search-input {
   background-color: transparent;
   border: none;
   outline: none;
+  width: 93%;
 }
 .search-btn {
   background-color: rgb(255, 196, 0);
@@ -115,7 +117,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 72px;
+  overflow: hidden;
 }
 .signup-heading {
   color: white;
@@ -177,4 +179,12 @@ body {
 .profile {
   width: 100%;
   margin-top: 10%;
+}
+.for-rent {
+}
+.for-rent-header {
+  background-color: rgba(71, 8, 98, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

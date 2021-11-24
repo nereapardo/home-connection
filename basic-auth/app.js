@@ -16,6 +16,14 @@ const multer = require("multer");
 hbs.registerHelper("spaceToLowBAR", function (str) {
   return str.replace(/\s+/g, "_");
 });
+hbs.registerHelper("if_eq", function (a, b, opts) {
+  if (a == b) return opts.fn(this);
+  else return opts.inverse(this);
+});
+hbs.registerHelper("if_empty", function (a, b, opts) {
+  if (a == b) return opts.fn(currentSearchValue);
+  else return opts.inverse(currentSearchValue);
+});
 
 const app = express();
 require("./config/session.config")(app);

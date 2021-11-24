@@ -12,7 +12,6 @@ router.get("/", async (req, res, next) => {
       locationList.push(house.location);
       return locationList;
     });
-    console.log(locationList);
     res.render("index", { locationList });
   } catch (error) {
     console.log(error);
