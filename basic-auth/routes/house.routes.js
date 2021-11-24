@@ -11,6 +11,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
+function capitalize(str) {
+  const splitStr = str.toLowerCase().split(" ");
+  for (let i = 0; i < splitStr.length; i++) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(" ");
+}
+
 router.get("/new-house", isLoggedIn, (req, res, next) => {
   const { username } = req.session.loggedUser;
   res.render("newHouse");
@@ -22,6 +31,14 @@ router.get("/for-rent", async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
+});
+router.get("/for-rent/search", async (req, res, next) => {
+  if (req.url === `/for-rent/search?location=`) {
+    res.redirect("/for-rent");
+    return;
+  }
+  const housesList = await House.find(req.query);
+  res.render("forRent", { housesList });
 });
 router.get("/house/:id", async (req, res, next) => {
   try {
@@ -47,7 +64,8 @@ router.get("/house/:id/update", isLoggedIn, async (req, res, next) => {
   }
 });
 router.post("/new-house", isLoggedIn, async (req, res, next) => {
-  const { title, location, area, rooms, description, price } = req.body;
+  const { title, area, rooms, description, price } = req.body;
+  const location = capitalize(req.body.location);
   let active = req.body.active === "on" ? true : false;
   let photo = "/images/no-img-available.jpg";
   let public_id = "";
@@ -80,9 +98,8 @@ router.post("/new-house", isLoggedIn, async (req, res, next) => {
       active,
       userId,
     });
-    res.redirect(`/${userId}`);
+    res.redirect("/profile");
   } catch (error) {
-    console.log(error.message);
     res.render("newHouse", { msg });
   }
 });
@@ -91,28 +108,23 @@ router.post("/house/:id/update", isLoggedIn, async (req, res, next) => {
   const houseInfo = await House.findById(req.params.id);
   const houseManager = houseInfo.userId.toString();
   if (loggedUserId !== houseManager) {
-    res.redirect6("/");
+    res.redirect("/");
     return;
   }
   const housePhoto = houseInfo.public_id;
-  console.log(houseInfo);
   if (housePhoto !== "") {
     const result = await cloudinary.v2.uploader.destroy(housePhoto);
   }
-  console.log("this is houseInfo", houseInfo);
   const { title, location, area, rooms, description, price } = req.body;
   let active = req.body.active === "on" ? true : false;
   let photo = "/images/no-img-available.jpg";
   let public_id = "";
-  console.log("body", req.body);
-  console.log("file", req.file);
   if (req.file !== undefined) {
     const photoUploaded = await cloudinary.v2.uploader.upload(req.file.path);
     photo = photoUploaded.url;
     public_id = photoUploaded.public_id;
   }
   try {
-    const userId = await req.session.loggedUser._id;
     const updatedHouse = await House.findByIdAndUpdate(req.params.id, {
       title,
       location,
@@ -124,7 +136,7 @@ router.post("/house/:id/update", isLoggedIn, async (req, res, next) => {
       price,
       active,
     });
-    res.redirect(`/${userId}`);
+    res.redirect("/profile");
   } catch (error) {
     res.render("updateHouse", {
       houseInfo,
@@ -141,15 +153,14 @@ router.post("/house/:id/delete", isLoggedIn, async (req, res, next) => {
     return;
   }
   const housePhoto = houseInfo.public_id;
-  console.log(houseInfo.public_id);
   if (housePhoto !== "") {
     const result = await cloudinary.v2.uploader.destroy(housePhoto);
   }
   try {
     const deletedHouse = await House.findByIdAndRemove(req.params.id);
-    res.redirect(`/${loggedUserId}`);
+    res.redirect("/profile");
   } catch (error) {
-    res.redirect(`/${loggedUserId}`);
+    res.redirect("/profile");
   }
 });
 // TODO: add different filters

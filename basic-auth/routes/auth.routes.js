@@ -5,26 +5,18 @@ const User = require("../models/User.model");
 const { isLoggedOut } = require("../middleware/route-guard");
 const { isLoggedIn } = require("../middleware/route-guard");
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("signup");
 });
-router.get("/login", (req, res, next) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("login");
 });
-router.get("/:id", async (req, res, next) => {
-  const userId = await req.session.loggedUser._id;
-  const urlId = req.params.id;
-  console.log("user id", userId);
-  console.log("url id ", urlId);
-  if (userId !== urlId) {
-    res.redirect("/");
-    return;
-  }
-
+router.get("/profile", async (req, res, next) => {
   try {
+    const userId = await req.session.loggedUser._id;
     const query = { userId: userId };
     const userHouses = await House.find(query);
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(userId);
     res.render("profile", { user, userHouses });
   } catch (error) {
     console.log(error);
@@ -71,7 +63,7 @@ router.post("/login", async (req, res, next) => {
       res.render("login", { msg: "Invalid credentials" });
     } else {
       req.session.loggedUser = userFromDB;
-      res.redirect(`/${userFromDB.id}`);
+      res.redirect("/profile");
     }
   }
 });

@@ -1,11 +1,12 @@
-<h1>Profile page</h1>
-<h3>{{user.username}}</h3>
-<h3>{{user.contact}}</h3>
-<a href="/new-house">New house</a>
-{{#each userHouses}}
-    {{this.title}}
-    <a href="/house/{{this._id}}/update">Edit</a>
-    <form method="POST" action="/house/{{this._id}}/delete">
-        <button type="submit">Delete</button>
-    </form>
-{{/each}}
+<main class="profile">
+    <h1> Welcome {{user.username}}</h1>
+    <h3>{{user.contact}}</h3>
+    <a href="/new-house">New house</a>
+    {{#each userHouses}}
+        {{this.title}}
+        <a href="/house/{{this._id}}/update">Edit</a>
+        <form method="POST" action="/house/{{this._id}}/delete">
+            <button type="submit">Delete</button>
+        </form>
+    {{/each}}
+</main>

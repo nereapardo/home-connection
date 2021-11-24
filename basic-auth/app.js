@@ -13,6 +13,9 @@ const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
 const multer = require("multer");
+hbs.registerHelper("spaceToLowBAR", function (str) {
+  return str.replace(/\s+/g, "_");
+});
 
 const app = express();
 require("./config/session.config")(app);
@@ -35,11 +38,20 @@ const storage = multer.diskStorage({
 });
 app.use(multer({ storage }).single("photo"));
 
+app.use((req, res, next) => {
+  if (req.session.loggedUser) {
+    res.locals.session = req.session;
+  }
+  next();
+});
+
 // 👇 Start handling routes here
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/house.routes"));
 app.use("/", require("./routes/auth.routes"));
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
+// Middleware to send login session to navbar in layout
 
 module.exports = app;

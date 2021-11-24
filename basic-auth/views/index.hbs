@@ -3,11 +3,14 @@
         <div class="hero-img">
             <h1 class="hero-heading">Find the right home for you</h1>
             <div class="search-container">
-                <form action="/" method="POST" class="hero-search">
+                <form action="/for-rent/search" method="GET" class="hero-search">
                 <div class="hero-search-bar">
                 <i class="fas fa-search-location"></i>
-                <input type="text" name="city" placeholder="City  eg. London" class="hero-search-bar-input">
-                </div>
+                <select name="location">
+                    {{#each locationList}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
                 <button type="submit" class="search-btn">Search</button>
                 </form>
             </div>
