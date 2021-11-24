@@ -1,9 +1,11 @@
 <h1>list of houses for rent</h1>
 {{#each housesList}}
-<h3>{{this.title}}</h3>
-<h3>{{this.location}}</h3>
-<h3>{{this.area}}</h3>
-<img src="{{photo}}">
-<h3>user id:{{this.userId}}</h3>
-<h3>house id:{{this._id}}</h3>
+{{#if this.active}}
+    <h3>{{this.title}}</h3>
+    <h3>{{this.location}}</h3>
+    <h3>{{this.area}}</h3>
+    <img src="{{photo}}">
+    <h3>user id:{{this.userId}}</h3>
+    <h3>house id:{{this._id}}</h3>
+{{/if}}
 {{/each}}
