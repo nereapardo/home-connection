@@ -1,13 +1,14 @@
 body {
   margin: 0;
 }
+
 .logo {
   width: 48px;
   height: 48px;
   margin-right: 16px;
 }
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -102,8 +103,8 @@ body {
   padding: 8px 16px;
   border: none;
   border-radius: 10px;
+  text-decoration: none;
 }
-
 .features-container {
   height: 400px;
   width: 100%;
@@ -117,7 +118,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 .signup-heading {
   color: white;
@@ -181,10 +181,113 @@ body {
   margin-top: 10%;
 }
 .for-rent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .for-rent-header {
+  width: 100%;
   background-color: rgba(71, 8, 98, 1);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 16px 0;
+  color: white;
+}
+.for-rent-search {
+  width: 20%;
+}
+.for-rent-search-input {
+  border: none;
+  outline: none;
+  width: 60%;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+.houses-list-container {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(71, 8, 98, 0.274);
+  margin: 24px 0;
+  border-radius: 15px;
+}
+.house-card {
+  background-color: white;
+  width: 252px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 0;
+  border-radius: 15px;
+  border: 1px solid rgb(71, 8, 98);
+  margin: 32px;
+}
+.house-card-img {
+  width: 250px;
+  height: 188px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.house-card-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.house-title {
+  font-size: 16px;
+  padding: 4px 16px;
+}
+.house-info-card {
+  font-size: 16px;
+}
+.house-card-info-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}
+.house-card-info-icon h2 {
+  padding: 8px 0 4px 4px;
+  font-size: 14px;
+}
+.house-info-icon {
+  width: 14px;
+  height: 14px;
+}
+.price {
+  font-size: 14px;
+  color: rgb(49, 48, 51);
+  padding: 4px 16px;
+}
+.house-info {
+  font-size: 14px;
+  padding: 4px 16px;
+}
+.house-info-measures {
+  display: flex;
+  flex-direction: row;
+}
+.house-info-measures h2 {
+  display: inline;
+  font-size: 14px;
+  padding: 4px 16px;
+}
+#house-info-btn {
+  margin: 0 16px;
+}
+#house-info-btn:hover {
+  color: rgba(71, 8, 98, 1);
+}
+.house-info-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
 }

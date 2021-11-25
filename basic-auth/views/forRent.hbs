@@ -1,8 +1,8 @@
 <main class="for-rent">
     <div class="for-rent-header">
     <h1>Available houses for rent</h1>
-    <form method="GET" action="/for-rent/search">
-    <select name="location">
+    <form method="GET" action="/for-rent/search" class="for-rent-search">
+    <select name="location" class="for-rent-search-input">
         {{#each locationList}}
                 {{#if_eq this ""}}
                     {{#if_eq this ../currentSearchValue}}
@@ -24,21 +24,35 @@
     <button type="submit" class="search-btn">Search</button>
 </form>
 </div>
-
-
-
-
-
-{{#each housesList}}
-{{#if this.active}}
-    <h3>{{this.title}}</h3>
-    <h3>{{this.location}}</h3>
-    <h3>{{this.area}}</h3>
-    <img src="{{photo}}">
-    <h3>user id:{{this.userId}}</h3>
-    <h3>house id:{{this._id}}</h3>
-    <a href="/house/{{this._id}}">view house</a>
-{{/if}}
-{{/each}}
-
+<div class="houses-list-container">
+        {{#each housesList}}
+            {{#if this.active}}
+    <div class="house-card">
+        <div>
+            <img src="{{photo}}" class="house-card-img">
+        </div>
+        <div class="house-card-info">
+                <h2 class="house-title">{{this.title}}</h2>
+                <span class="price">{{this.price}} €/month</span>
+                <div class="house-card-info-icon">
+                    <i class="fas fa-map-marker-alt house-info-icon"></i>
+                    <h2 class="house-info-w-icon">{{this.location}}</h2>
+                </div>
+                <div class="house-info-measures">
+                    <div class="house-card-info-icon">
+                        <i class="fas fa-bed house-info-icon"></i>
+                        <h2 class="house-info-w-icon">{{this.rooms}}</h2>
+                        <h2>{{this.area}}m²</h2>
+                    </div>
+                </div>
+                <div class="house-info-btn-container">
+                    <a href="/house/{{this._id}}" class="search-btn" id="house-info-btn">view house</a>
+                </div>
+                
+            
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
+</div>
 </main>
