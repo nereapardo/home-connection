@@ -77,5 +77,24 @@ router.post("/logout", isLoggedIn, async (req, res, next) => {
     next(err);
   }
 });
+router.post("/profile", isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = await req.session.loggedUser._id;
+    const { contact } = req.body;
+    const query = { userId: userId };
+    const userHouses = await House.find(query);
+    const user = await User.findById(userId);
+    const updateContactDetails = await User.findByIdAndUpdate(userId, {
+      contact,
+    });
+    res.redirect("/profile");
+  } catch (error) {
+    res.render("/profile", {
+      user,
+      userHouses,
+      msg: "there was an error",
+    });
+  }
+});
 
 module.exports = router;

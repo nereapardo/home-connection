@@ -7,6 +7,13 @@ body {
   height: 48px;
   margin-right: 16px;
 }
+.navbar-container {
+  background-color: white;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
 .navbar {
   position: sticky;
   top: 0;
@@ -16,13 +23,35 @@ body {
   background-color: white;
   margin: 0;
   height: 64px;
+  padding: 0 10%;
+}
+.navbarNav {
+  background-color: white;
 }
 .navbar a {
-  color: rgb(49, 48, 51);
+  color: rgb(49, 48, 51) !important;
+  margin-right: 16px;
 }
 .navbar a:hover {
+  color: rgba(67, 45, 118, 0.733) !important;
+  font-weight: bold !important;
+}
+#navbar-auth-btn {
   color: rgba(67, 45, 118, 0.733);
-  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid rgba(67, 45, 118, 0.733);
+  margin-right: 16px;
+  padding: 4px 8px;
+  background-color: transparent;
+  color: rgb(49, 48, 51);
+}
+#navbar-auth-btn:hover {
+  color: rgba(71, 8, 98, 1) !important;
+  font-weight: bold !important;
+  background-color: rgb(255, 196, 0);
+}
+.navbar-toggler {
+  color: rgb(49, 48, 51);
 }
 #logo-text {
   color: rgba(67, 45, 118, 0.733);
@@ -176,16 +205,12 @@ body {
   color: red;
   font-size: 16px;
 }
-.profile {
-  width: 100%;
-  margin-top: 10%;
-}
 .for-rent {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.for-rent-header {
+.header {
   width: 100%;
   background-color: rgba(71, 8, 98, 1);
   display: flex;
@@ -280,14 +305,32 @@ body {
 }
 #house-info-btn {
   margin: 0 16px;
-}
-#house-info-btn:hover {
   color: rgba(71, 8, 98, 1);
 }
+
 .house-info-btn-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 16px;
+}
+.profile-main {
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+}
+.profile-house-list {
+  width: 70%;
+  height: 50px;
+}
+.profile-contact-details {
+  width: 30%;
+  background-color: rgba(71, 8, 98, 0.274);
+  border-radius: 15px;
+}
+.edit-profile-icon {
+  width: 14px;
+  height: 14px;
+  color: rgb(71, 8, 98);
 }
