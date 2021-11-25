@@ -1,2 +1,23 @@
-<h3>contact:{{userInfo.contact}}</h3>
-<h3>title of the house: {{houseInfo.title}}</h3>
+<main class="house-info-container">
+  <div class="house-info">
+    <img src="{{houseInfo.photo}}" class="house-info-img" />
+    <h1 class="house-info-title">{{houseInfo.title}}</h1>
+    <h2 class="house-info-price">{{houseInfo.price}} €/month</h2>
+    <div class="house-info-measures">
+      <div>
+        <i class="fas fa-bed house-info-icon"></i>
+        <h2 class="house-info-w-icon">{{houseInfo.rooms}}</h2>
+        <h2>{{houseInfo.area}}m²</h2>
+        <p class="house-info-description">{{houseInfo.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-details">
+    <h3>Contact the owner:</h3>
+    <h4 class="contact-details-info">{{userInfo.contact}}</h4>
+
+  </div>
+
+</main>
+
+houseInfo, userInfo

@@ -1,32 +1,77 @@
-<div class="profile-container">
+
+    <main class="profile-main">
     <div class="header">
     <h1>Welcome {{user.username}}</h1>
     </div>
-    <main class="profile-main">
-        <div class="profile-house-list">
+<div class="profile-container">
+            <div class="profile-house-list">
+                <h2 class="profile-house-list-header">Your adds:</h2>
+                <table class="profile-table">
+	<col style="width:35%">
+	<col style="width:15%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:20%">
+  <tr class="profile-table-header">
+    <th>Title</th>
+    <th>Location</th>
+    <th>m²</th>
+    <th>Nº rooms</th>
+    <th>Price</th>
+    <th>Add status</th>
+    <th>Mange house</th>
+  </tr>
+      {{#each userHouses}}
+          {{#if this.active}}
+      <tr class="green">
+          <td>{{this.title}}</td>
+          <td>{{this.location}}</td>
+          <td class="profile-table-column-centered">{{this.area}}</td>
+          <td class="profile-table-column-centered">{{this.rooms}}</td>
+          <td class="profile-table-column-centered">{{this.price}}</td>
+          <td class="profile-table-column-centered">Active</td>
+          <td class="profile-table-manage"><a href="/house/{{this._id}}/update" class="profile-table-manage-btn"><i class="fas fa-pen edit-profile-icon"></i></a>
+        <form method="POST" action="/house/{{this._id}}/delete">
+            <button type="submit" class="profile-table-manage-btn"><i class="fas fa-trash-alt edit-profile-icon"></i></button>
+        </form>
+        </td>
+      </tr>
+      {{else}}
+        <tr class="red">
+          <td class="">{{this.title}}</td>
+          <td>{{this.location}}</td>
+          <td>{{this.area}}</td>
+          <td>{{this.rooms}}</td>
+          <td>{{this.price}}</td>
+          <td>Inactive</td>
+          <td class="profile-table-manage"><a href="/house/{{this._id}}/update" class="profile-table-manage-btn"><i class="fas fa-pen edit-profile-icon"></i></a>
+        <form method="POST" action="/house/{{this._id}}/delete">
+            <button type="submit" class="profile-table-manage-btn"><i class="fas fa-trash-alt edit-profile-icon"></i></button>
+        </form></td>
+      </tr>
+      {{/if}}
+      {{/each}}
+</table>
+<div class="profile-new-house-btn-container">
+  <a href="/new-house" class="profile-new-house-btn">+ new house</a>
+</div>
+
+
+</div>
             
 
-        </div>
+
         <div class="profile-contact-details">
             <form method="POST" action="/profile">
-                <p>Contact information:</p>
-                <p>{{user.contact}}</p>
+                <h3>Contact information:</h3>
+                <p class="profile-contact-details-current">{{user.contact}}</p>
                 <label>Update your contact details:</label>
-                <textarea name="contact" required placeholder="ContactInfo"></textarea>
-                <button type="submit"><i class="fas fa-pen edit-profile-icon"></i></button>
-
+                <textarea name="contact" required placeholder="Your contact details:" class="profile-contact-details-form"></textarea>
+                <button type="submit" class="profile-contact-details-edit-btn"><i class="fas fa-pen edit-profile-icon"></i>Update</button>
             </form>
 
         </div>
 
     </main>
-    <h3>{{user.contact}}</h3>
-    <a href="/new-house">New house</a>
-    {{#each userHouses}}
-        {{this.title}}
-        <a href="/house/{{this._id}}/update">Edit</a>
-        <form method="POST" action="/house/{{this._id}}/delete">
-            <button type="submit">Delete</button>
-        </form>
-    {{/each}}
-</div>

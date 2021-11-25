@@ -1,5 +1,14 @@
 body {
   margin: 0;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+main {
+  flex-shrink: 0;
+  flex-grow: 1;
 }
 
 .logo {
@@ -15,6 +24,8 @@ body {
   flex-grow: 1;
 }
 .navbar {
+  display: flex;
+  flex-shrink: 0;
   position: sticky;
   top: 0;
   left: 0;
@@ -57,20 +68,17 @@ body {
   color: rgba(67, 45, 118, 0.733);
   font-weight: bold;
 }
-.hero {
-  height: 600px;
-  position: relative;
-}
 .hero-img {
   background-image: url("../images/city-hero-img.jpg");
   background-size: cover;
   background-position: bottom;
-  height: 100%;
+  height: 600px;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .hero-heading {
   color: white;
@@ -135,13 +143,12 @@ body {
   text-decoration: none;
 }
 .features-container {
-  height: 400px;
   width: 100%;
   background-color: rgba(71, 8, 98, 1);
 }
 .auth {
   width: 100%;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 112px);
   background-color: rgba(71, 8, 98, 1);
   display: flex;
   flex-direction: column;
@@ -242,7 +249,7 @@ body {
 .house-card {
   background-color: white;
   width: 252px;
-  height: 400px;
+  height: 408px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -267,6 +274,14 @@ body {
 .house-title {
   font-size: 16px;
   padding: 4px 16px;
+  overflow: hidden;
+  height: 40px;
+  width: inherit;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .house-info-card {
   font-size: 16px;
@@ -276,8 +291,9 @@ body {
   flex-direction: row;
   align-items: center;
   padding: 0 16px;
+  width: inherit;
 }
-.house-card-info-icon h2 {
+.house-info-w-icon {
   padding: 8px 0 4px 4px;
   font-size: 14px;
 }
@@ -315,22 +331,223 @@ body {
   align-items: center;
   padding: 16px;
 }
-.profile-main {
+.profile-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 24px;
+  padding: 72px;
+}
+.profile-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .profile-house-list {
-  width: 70%;
-  height: 50px;
+  margin-right: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-house-list-header {
+  width: 100%;
+  margin-bottom: 48px;
+  color: rgb(71, 8, 98);
+  font-weight: bold;
+}
+.profile-new-house-btn-container {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+.profile-new-house-btn {
+  padding: 8px 16px;
+  margin: 24px;
+  background-color: rgb(255, 196, 0);
+  color: rgb(71, 8, 98);
+  font-weight: bold;
+  border-radius: 15px;
+  text-decoration: none;
+}
+.profile-new-house-btn:hover {
+  color: rgb(71, 8, 98);
 }
 .profile-contact-details {
   width: 30%;
-  background-color: rgba(71, 8, 98, 0.274);
+  background-color: rgba(70, 0, 100, 0.274);
   border-radius: 15px;
+  padding: 32px;
+}
+.profile-contact-details-current {
+  border: 1px solid rgb(70, 0, 100);
+  padding: 8px 16px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.profile-contact-details-form {
+  width: 100%;
+  height: 300px;
+  padding: 8px 16px;
+}
+.profile-contact-details-edit-btn {
+  background-color: rgb(255, 196, 0);
+  padding: 8px 16px;
+  border-radius: 15px;
+  border: none;
+  color: rgb(71, 8, 98);
+  font-weight: bold;
+  margin-top: 16px;
 }
 .edit-profile-icon {
   width: 14px;
   height: 14px;
   color: rgb(71, 8, 98);
+  margin: 8px;
+}
+.profile-table {
+  width: 100%;
+}
+.profile-table-header {
+  border-bottom: 3px solid rgb(71, 8, 98);
+}
+.profile-table th,
+.profile-table td {
+  padding: 0 0 8px 16px;
+}
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.profile-table-manage {
+  display: flex;
+  flex-direction: row;
+}
+.profile-table-manage-btn {
+  padding: 4px;
+  margin-right: 16px;
+  border: none;
+  background-color: transparent;
+}
+.create-update-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-update-container {
+  background-color: rgba(70, 0, 100, 0.274);
+  border-radius: 15px;
+  width: 90%;
+  margin: 48px 0 48px 0;
+  padding: 32px;
+}
+.create-update-fields {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+.create-update-fields-input {
+  border-radius: 8px;
+  border: none;
+  padding: 4px 8px;
+  outline: none;
+}
+#create-update-active-container {
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+}
+#create-update-active-label {
+  margin-right: 8px;
+  font-size: 18px;
+}
+#create-update-active {
+  align-items: center;
+  width: 18px;
+  height: 18px;
+}
+.create-update-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-update-active-btn {
+  background-color: rgb(255, 196, 0);
+  padding: 16px 48px;
+  border-radius: 15px;
+  border: none;
+  color: rgb(71, 8, 98);
+  font-weight: bold;
+}
+.house-info-container {
+  display: flex;
+  padding: 72px;
+}
+.house-info {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 100px;
+}
+.house-info-img {
+  object-fit: cover;
+}
+.house-info-title {
+  width: 100%;
+  margin: 16px 32px;
+}
+.house-info-measures {
+  width: 100%;
+  display: flex;
+}
+.house-info-price {
+  color: rgba(49, 48, 51, 0.746);
+  width: 100%;
+  margin: 16px 32px;
+}
+.house-info-description {
+  margin-top: 16px;
+}
+.contact-details {
+  width: 30%;
+  background-color: rgba(70, 0, 100, 0.274);
+  border-radius: 15px;
+  padding: 32px;
+  height: fit-content;
+}
+.contact-details-info {
+  color: rgba(49, 48, 51, 0.746);
+}
+.red {
+  background-color: rgba(255, 99, 71, 0.555);
+}
+.green {
+  background-color: rgba(153, 205, 50, 0.555);
+}
+footer {
+  width: 100%;
+  height: 48px;
+  background-color: rgb(31, 31, 31);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 72px;
+  font-style: italic;
+  z-index: 999;
+}
+.social-media {
+  width: 72px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-icon {
+  font-size: 30px;
+}
+.social-media a {
+  color: white;
 }

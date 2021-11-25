@@ -1,26 +1,36 @@
 <main>
-    <div class="hero">
-        <div class="hero-img">
-            <h1 class="hero-heading">Find the right home for you</h1>
-            <div class="search-container">
-                <form action="/for-rent/search" method="GET" class="hero-search">
-                <div class="hero-search-bar">
-                    <label for="hero-search-input"><i class="fas fa-search-location"></i></label>
-                <select name="location" id="hero-search-input">
-                    {{#each locationList}}
-                    <option value="{{this}}">{{this}}</option>option>
-                    {{/each}}
-                </select>
-            </div>
-                <button type="submit" class="search-btn">Search</button>
-                </form>
+  <div class="hero-img">
+    <h1 class="hero-heading">Find the right home for you</h1>
+    <div class="search-container">
+      <form action="/for-rent/search" method="GET" class="hero-search">
+        <div class="hero-search-bar">
+          <label for="hero-search-input"><i
+              class="fas fa-search-location"
+            ></i></label>
+          <select name="location" id="hero-search-input">
+            {{#each locationList}}
+              <option value="{{this}}">{{this}}</option>option>
+            {{/each}}
+          </select>
         </div>
-        <div class="hero-effect"></div>
-     </div>
-     <div class="features-container">
-   <div class="features"></div>
-   <div class="features"></div>
-   <div class="features"></div>
-</div>
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+    </div>
+    <div class="hero-effect"></div>
+  </div>
+  <div class="features-container">
+    <div class="features">Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. In provident eius eaque facilis officiis error, id possimus
+      repudiandae magnam quaerat nulla ullam esse quas praesentium temporibus
+      tenetur, corporis aliquam vero.</div>
+    <div class="features">Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Adipisci, ducimus ullam a, molestias labore cum dolores, optio ut
+      minima non aut sequi architecto ratione. Voluptatem voluptatibus aut fugit
+      quam veniam.</div>
+    <div class="features">Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Molestias optio numquam similique voluptates consequuntur enim culpa
+      earum deleniti nemo autem a fugit totam maiores, velit cum tenetur fugiat
+      aspernatur? Deserunt!</div>
+  </div>
 
 </main>

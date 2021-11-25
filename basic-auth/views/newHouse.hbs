@@ -1,25 +1,80 @@
-<main class="auth">
-    <form method="POST", action="/new-house" enctype="multipart/form-data">
-<label>Title:</label>
-<input type="text" name="title">
-<label>Location:</label>
-<input type="text" name="location">
-<label>m2:</label>
-<input type="text" name="area">
-<label>Number of rooms:</label>
-<input type="text" name="rooms">
-<label>Photo:</label>
-<input type="file" name="photo" >
-<label>Description:</label>
-<textarea name="description">eg. Spacious T3 flat in central London...</textarea>
-<label>Price/month:</label>
-<input type="text" name="price">
-<label>Active add:</label>
-<input type = "checkbox" name ="active">
-<button type="submit">Create house</button>
-</form>
-{{#if msg}}
-    <h3>{{msg}}</h3>
-{{/if}}
+<main class="create-update-main">
+  <div class="header">
+    <h1>Add a new house</h1>
+  </div>
+  <div class="create-update-container">
+    <form method="POST" , action="/new-house" enctype="multipart/form-data">
+      <div class="create-update-fields">
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Location:</label>
+        <input
+          type="text"
+          name="location"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>m² * :</label>
+        <input
+          type="text"
+          name="area"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Number of rooms*:</label>
+        <input
+          type="text"
+          name="rooms"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Photo:</label>
+        <input type="file" name="photo" class="create-update-fields-input" />
+      </div>
+      <div class="create-update-fields">
+        <label>Description:</label>
+        <textarea
+          name="description"
+          class="create-update-fields-input"
+          placeholder="Description example"
+          style="height: 150px;"
+        ></textarea>
+      </div>
+      <div class="create-update-fields">
+        <label>Price/month*:</label>
+        <input
+          type="text"
+          name="price"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div id="create-update-active-container">
+        <label id="create-update-active-label">Active add</label>
+        <input type="checkbox" name="active" id="create-update-active" />
+      </div>
+      <p>* Must be a number</p>
+      <div class="create-update-btn-container">
+        {{#if msg}}
+          <h3 class="errorMsg">{{msg}}</h3>
+        {{/if}}
+        <button type="submit" class="create-update-active-btn">Create house</button>
+      </div>
+    </form>
+
+  </div>
 
 </main>

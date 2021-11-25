@@ -9,7 +9,7 @@ const houseSchema = new Schema(
     photo: { type: String },
     public_id: { type: String },
     description: { type: String },
-    price: { type: Number },
+    price: { type: Number, required: true },
     active: { type: Boolean, required: true },
     userId: { type: Schema.Types.ObjectId, ref: "User" },
   },

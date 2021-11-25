@@ -1,25 +1,88 @@
-<main class="auth">
-    <form method="POST", action="/house/{{houseInfo.id}}/update" enctype="multipart/form-data">
-<label>Title:</label>
-<input type="text" name="title" value="{{houseInfo.title}}">
-<label>Location:</label>
-<input type="text" name="location" value="{{houseInfo.location}}">
-<label>m2:</label>
-<input type="text" name="area" value="{{houseInfo.area}}">
-<label>Number of rooms:</label>
-<input type="text" name="rooms" value="{{houseInfo.rooms}}">
-<label>Photo:</label>
-<input type="file" name="photo">
-<label>Description:</label>
-<textarea name="description" value="{{houseInfo.description}}">eg. Spacious T3 flat in central London...</textarea>
-<label>Price/month:</label>
-<input type="text" name="price" value="{{houseInfo.price}}">
-<label>Active add:</label>
-<input type = "checkbox" name ="active" >
-<button type="submit">Update</button>
-</form>
-{{#if msg}}
-    <h3>{{msg}}</h3>
-{{/if}}
-
+<main class="create-update-main">
+  <div class="header">
+    <h1>Update house details</h1>
+  </div>
+  <div class="create-update-container">
+    <form
+      method="POST"
+      ,
+      action="/house/{{houseInfo.id}}/update"
+      enctype="multipart/form-data"
+    >
+      <div class="create-update-fields">
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          value="{{houseInfo.title}}"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Location:</label>
+        <input
+          type="text"
+          name="location"
+          value="{{houseInfo.location}}"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>m2* :</label>
+        <input
+          type="text"
+          name="area"
+          value="{{houseInfo.area}}"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Number of rooms*:</label>
+        <input
+          type="text"
+          name="rooms"
+          value="{{houseInfo.rooms}}"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div class="create-update-fields">
+        <label>Photo**:</label>
+        <input type="file" name="photo" class="create-update-fields-input" />
+      </div>
+      <div class="create-update-fields">
+        <textarea
+          name="description"
+          class="create-update-fields-input"
+          style="height: 150px;"
+        >{{houseInfo.description}}</textarea>
+      </div>
+      <div class="create-update-fields">
+        <label>Price/month*:</label>
+        <input
+          type="text"
+          name="price"
+          value="{{houseInfo.price}}"
+          class="create-update-fields-input"
+          required
+        />
+      </div>
+      <div id="create-update-active-container">
+        <label>Active add</label>
+        <input type="checkbox" name="active" id="create-update-active" />
+      </div>
+      <div>
+        <p>* Must be a number</p>
+        <p>** Previous photos will not be saved</p>
+      </div>
+      <div class="create-update-btn-container">
+        {{#if msg}}
+          <h3 class="errorMsg">{{msg}}</h3>
+        {{/if}}
+        <button type="submit" class="create-update-active-btn">Save changes</button>
+      </div>
+  </div>
 </main>
