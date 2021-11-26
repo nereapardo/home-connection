@@ -1,25 +1,30 @@
 <main class="auth">
-        <h1 class="signup-heading">Star now publishing your houses and find the perfect tenant</h1>
-    <div class="auth-container">
-        <form method="POST", action="/signup" class="auth-form">
-        <div class="auth-form-input">
+  <h1 class="signup-heading">Star now publishing your houses and find the
+    perfect tenant</h1>
+  <div class="auth-container">
+    <form method="POST" , action="/signup" class="auth-form">
+      <div class="auth-form-input">
         <label>Username:</label>
-        <input type="text" name="username" required>
-        </div>
-        <div class="auth-form-input">
+        <input type="text" name="username" required />
+      </div>
+      <div class="auth-form-input">
         <label>Password:</label>
-        <input type="password" name="password" required>
-        </div>
-        <div class="auth-form-input">
+        <input type="password" name="password" required />
+      </div>
+      <div class="auth-form-input">
         <label>Contact information:</label>
-        <textarea name="contact" required placeholder="ContactInfo"></textarea>
-        </div>
-        <div class="errorMsg">
-            {{#if msg}}
-            <p>{{msg}}</p>
+        <textarea
+          name="contact"
+          required
+          placeholder="Your contact information for people to reach to you about your ads."
+        ></textarea>
+      </div>
+      <div class="errorMsg">
+        {{#if msg}}
+          <p>{{msg}}</p>
         {{/if}}
-        </div>
-        <button type="submit" class="auth-btn">Create account</button>
-        </form>        
-    </div>
+      </div>
+      <button type="submit" class="auth-btn">Create account</button>
+    </form>
+  </div>
 </main>
