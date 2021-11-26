@@ -45,7 +45,6 @@ router.get("/for-rent/search", async (req, res, next) => {
   }
   const housesList = await House.find(req.query);
   const currentSearchValue = req.query.location.toString();
-  console.log("this is", currentSearchValue);
   const allHousesList = await House.find();
   let locationList = [""];
   allHousesList.forEach((house) => {

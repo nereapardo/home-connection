@@ -7,7 +7,6 @@ router.get("/", async (req, res, next) => {
     const housesList = await House.find();
     let locationList = [""];
     housesList.forEach((house) => {
-      console.log("each house", house.location);
       if (locationList.includes(house.location)) return;
       locationList.push(house.location);
       return locationList;
