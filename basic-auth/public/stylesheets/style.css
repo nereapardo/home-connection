@@ -546,6 +546,7 @@ main {
 }
 .house-info-img {
   object-fit: cover;
+  object-position: center center;
 }
 .house-info-title {
   width: 100%;
@@ -628,6 +629,15 @@ footer {
   color: red;
   font-size: 24px;
 }
+
+.photo-wrapper {
+  width: 100% !important;
+  height: 400px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: right bottom;
+}
+
 @media only screen and (max-width: 1020px) {
   .navbar {
     padding: 0;
@@ -693,9 +703,7 @@ footer {
     margin: 0;
     padding: 0;
   }
-  .house-info-img {
-    width: inherit;
-  }
+
   .contact-details {
     width: 90%;
   }
