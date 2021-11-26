@@ -72,7 +72,7 @@ main {
   background-image: url("../images/city-hero-img.jpg");
   background-size: cover;
   background-position: bottom;
-  height: 600px;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -167,7 +167,7 @@ main {
 }
 .start-now {
   padding: 100px 72px;
-  height: 700px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -659,6 +659,14 @@ footer {
   }
   .auth-form textarea {
     width: 100%;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+  }
+  .for-rent-search {
+    width: 80%;
   }
   .house-info-container {
     padding: 16px;
