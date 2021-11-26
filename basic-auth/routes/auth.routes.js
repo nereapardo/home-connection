@@ -35,6 +35,13 @@ router.post("/signup", isLoggedOut, async (req, res, next) => {
       msg: "This username already exists",
     });
   }
+  const validPassword = (regularExpression =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/);
+  if (!password.match(validPassword)) {
+    return res.render("signup", {
+      msg: "Password must be 6-16 characters long and must contain a number and a spacial character (!@#$%^&*)",
+    });
+  }
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const createdUser = await User.create({

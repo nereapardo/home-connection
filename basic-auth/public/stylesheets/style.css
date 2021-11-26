@@ -260,6 +260,7 @@ main {
 .errorMsg {
   color: red;
   font-size: 16px;
+  padding: 16px;
 }
 .for-rent {
   display: flex;
