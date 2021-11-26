@@ -17,10 +17,10 @@
   <tr class="profile-table-header">
     <th>Title</th>
     <th>Location</th>
-    <th>m²</th>
-    <th>Nº rooms</th>
+    <th class="hidde">m²</th>
+    <th class="hidde">Nº rooms</th>
     <th>Price</th>
-    <th>Add status</th>
+    <th class="hidde">Add status</th>
     <th>Mange house</th>
   </tr>
       {{#each userHouses}}
@@ -28,10 +28,10 @@
       <tr class="green">
           <td>{{this.title}}</td>
           <td>{{this.location}}</td>
-          <td class="profile-table-column-centered">{{this.area}}</td>
-          <td class="profile-table-column-centered">{{this.rooms}}</td>
+          <td class="profile-table-column-centered hidde">{{this.area}}</td>
+          <td class="profile-table-column-centered hidde">{{this.rooms}}</td>
           <td class="profile-table-column-centered">{{this.price}}</td>
-          <td class="profile-table-column-centered">Active</td>
+          <td class="profile-table-column-centered hidde">Active</td>
           <td class="profile-table-manage"><a href="/house/{{this._id}}/update" class="profile-table-manage-btn"><i class="fas fa-pen edit-profile-icon"></i></a>
         <form method="POST" action="/house/{{this._id}}/delete">
             <button type="submit" class="profile-table-manage-btn"><i class="fas fa-trash-alt edit-profile-icon"></i></button>
@@ -40,12 +40,12 @@
       </tr>
       {{else}}
         <tr class="red">
-          <td class="">{{this.title}}</td>
+          <td>{{this.title}}</td>
           <td>{{this.location}}</td>
-          <td>{{this.area}}</td>
-          <td>{{this.rooms}}</td>
+          <td class="hidde">{{this.area}}</td>
+          <td class="hidde">{{this.rooms}}</td>
           <td>{{this.price}}</td>
-          <td>Inactive</td>
+          <td class="hidde">Inactive</td>
           <td class="profile-table-manage"><a href="/house/{{this._id}}/update" class="profile-table-manage-btn"><i class="fas fa-pen edit-profile-icon"></i></a>
         <form method="POST" action="/house/{{this._id}}/delete">
             <button type="submit" class="profile-table-manage-btn"><i class="fas fa-trash-alt edit-profile-icon"></i></button>
